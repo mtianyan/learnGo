@@ -2,11 +2,9 @@ package main
 
 import (
 	"fmt"
-
+	"retriever/mock"
+	"retriever/real"
 	"time"
-
-	"imooc.com/ccmouse/learngo/retriever/mock"
-	"imooc.com/ccmouse/learngo/retriever/real"
 )
 
 type Retriever interface {

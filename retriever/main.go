@@ -54,6 +54,8 @@ func main() {
 		UserAgent: "Mozilla/5.0",
 		TimeOut:   time.Minute,
 	}
+	//fmt.Println(download(r))
+
 	inspect(r)
 
 	// Type assertion

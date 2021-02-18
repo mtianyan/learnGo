@@ -3,10 +3,9 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"functional/fib"
 	"io"
 	"strings"
-
-	"imooc.com/ccmouse/learngo/functional/fib"
 )
 
 type intGen func() int

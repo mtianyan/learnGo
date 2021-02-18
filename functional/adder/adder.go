@@ -20,6 +20,7 @@ func adder2(base int) iAdder {
 
 func main() {
 	// a := adder() is trivial and also works.
+
 	a := adder2(0)
 	for i := 0; i < 10; i++ {
 		var s int

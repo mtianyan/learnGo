@@ -1,12 +1,11 @@
 package main
 
 import (
+	"errhandling/fib"
 	"fmt"
 	"os"
 
 	"bufio"
-
-	"imooc.com/ccmouse/learngo/functional/fib"
 )
 
 func tryDefer() {

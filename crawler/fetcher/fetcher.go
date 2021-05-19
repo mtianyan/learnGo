@@ -45,27 +45,27 @@ func Fetch(url string) ([]byte, error) {
 	//resp, err := http.Get(url)
 	// 直接用http.Get(url)进行获取信息会报错：Error: status code 403
 	client := &http.Client{}
+	strings.Replace(url, "http://album.zhenai.com", "http://127.0.0.1:8000", 1)
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		log.Fatalln(err)
 	}
 	// 查看自己浏览器中的User-Agent信息（检查元素->Network->User-Agent）
-	req.Header.Add("Host", "album.zhenai.com")
-	req.Header.Add("Cookie", "sid=718e1906-668d-4ff8-bcff-bb2385533726; Hm_lvt_2c8ad67df9e787ad29dbd54ee608f5d2=1613620141; FSSBBIl1UgzbN7NO=5LQbtj3q65GdOZ6UNdGO6v8f7rCh4FiukHsHK69VhhpCvC45VJqQiaTnIxxA3G8rde9IRv2G.rWUuqkyFHGobgq; ec=FVTrmidR-1613620286783-ca5a54324df1c557364444; spliterabparams=1613623253824%3A-9082433820229133149; Hm_lpvt_2c8ad67df9e787ad29dbd54ee608f5d2=1613623572; FSSBBIl1UgzbN7NP=53c6SmbqzZpWqqqm676UchqJze15HZSPduxchLrxV30xPhLAdtQLoO4DHQBRbELn9CfsguQgooiTZcHm.mRCDsLQnSI2czdkrqA5S37VxSdKry8ycJm.w9qqQX00AXJGvejKTATpQFxGpK2s_pIof.ExGFjd2Bo3aIZk_lNTVo9moa5VWs0j5rYBYbgwhpqzk2tZF5WF5DZozBJNkkrsUu0D0Fz_NZO2MgD83l7lHcU68s3hP9h0VzLP0A1Etnn7h7; _efmdata=QXu7T9wveKjnnR%2FrSgla%2F4aicNBhKEnpPPoMOumutFJVBPXPGWPDCofuTQrm%2FyB37842iDHvGCTR5OK1PD4QjQ%2Fkctz3j9KZpb4%2BgQmHHlk%3D; _exid=gjjH7Dwdeamy6v59SLZ0E%2B7uhhjQCG5jDa1qM6meUHi8CiMFEK7jaDRvJj6jFVH1S6kSrBEDqqa7zs%2FSEWq25w%3D%3D; FSSBBIl1UgzbN7NO=5IwD.xEiZNGGechW9ZveRQnO8mskxojTAtSZnDSbWgHNrm4EAiZk0_GyXEpeSSq1fmC.c949EMAKX6.sYhEcZea")
-	req.Header.Add("pragma", "no-cache")
-	req.Header.Add("cache-control", "no-cache")
-	req.Header.Add("sec-ch-ua", "\"Chromium\";v=\"88\", \"Google Chrome\";v=\"88\", \";Not A Brand\";v=\"99\"")
+	req.Header.Add("authority", "album.zhenai.com")
+	req.Header.Add("cache-control", "max-age=0")
+	req.Header.Add("sec-ch-ua", "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"90\", \"Google Chrome\";v=\"90\"")
 	req.Header.Add("sec-ch-ua-mobile", "?0")
 	req.Header.Add("dnt", "1")
 	req.Header.Add("upgrade-insecure-requests", "1")
-	req.Header.Add("user-agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36")
+	req.Header.Add("user-agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36")
 	req.Header.Add("accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9")
 	req.Header.Add("sec-fetch-site", "same-origin")
 	req.Header.Add("sec-fetch-mode", "navigate")
 	req.Header.Add("sec-fetch-user", "?1")
 	req.Header.Add("sec-fetch-dest", "document")
-	req.Header.Add("referer", "https://album.zhenai.com/u/1428069052")
-	req.Header.Add("accept-language", "zh")
+	req.Header.Add("referer", "https://album.zhenai.com/u/1491731990")
+	req.Header.Add("accept-language", "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7")
+	req.Header.Add("cookie", "sid=98196e18-d8f8-4969-8554-0eb8041930d1; FSSBBIl1UgzbN7NO=5r23wzGfoRmbLhnImzKHcjJC.4vmLdma2gQbjSoCxK2.1TrG09Gpkb_CQnG7BXV1k7MVAYugbUSmmYq1gLb05za; Hm_lvt_2c8ad67df9e787ad29dbd54ee608f5d2=1621236454; ec=lFVERHrc-1621236455008-d58b6d5c17ba5-2057112252; _exid=%2Bb18ix%2FUYCoJ6IFb8CZHMk%2FTBkNjHowZshO5ZeNGexxKNGA216EdFXMqDZrd%2FXcsSrYiNy1jNXW98s%2B8spDyKQ%3D%3D; _efmdata=NHo%2Bq8CZ9cYBeisjQT5Lk4XIgxOCz4CMndxXVxENnUvmwiN8rk0c6ajQwjkFaYzPeTjZVPXwx%2BxgKbz2kDjUMh5NWTn%2Fs44gjCGTy2dYSr4%3D; Hm_lpvt_2c8ad67df9e787ad29dbd54ee608f5d2=1621236919; FSSBBIl1UgzbN7NP=53tEQXbcPoh3qqqmy8Vq_Pq7HbCTSAN_Z_MMrp5CqVj.16zcqgewGivQJoVbCN3tzLwvTYDy72ygUJ7oNRW_mhSKY7l7nrt5XMvOt9v3goW.T7F8w2xyUgggvuMnWVO3JqfYLiIBgA.jT6LK._6Ltx7IKeeR03WWjXpPadNbMbJj6.WkZ33tfndcMYz7cM.x0oDC3Nv6YIvi_Ii5Qs.3w0L.F2T2P.UkbGcVGQtz1a88e9b24wvAfX5Au8qrWaCpgg; FSSBBIl1UgzbN7NO=5Pfq1jqSPKHdqVVj7Gq2y2zMXEFllmI3U.Ufjrfnbczgf_YVSFyyiibIjqeyxH8dqzjrQuJPsz3Y7oVCSRzhNfq")
 
 	resp, err := client.Do(req)
 	if err != nil {

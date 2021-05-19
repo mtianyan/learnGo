@@ -2,19 +2,16 @@ package main
 
 import (
 	"crawler/engine"
-	"crawler/scheduler"
 	"crawler/zhenai/parser"
-
-	"crawler/persist"
 )
 
 func main() {
 	// 1. SimpleEngine
 	// 网络利用率：50-70k/s
-	//engine.SimpleEngine{}.Run(engine.Request{
-	//	Url:        "http://www.zhenai.com/zhenghun",
-	//	ParserFunc: parser.ParseCityList,
-	//})
+	engine.SimpleEngine{}.Run(engine.Request{
+		Url:        "http://www.zhenai.com/zhenghun",
+		ParserFunc: parser.ParseCityList,
+	})
 
 	// 2. ConcurrentEngine
 	// 网络利用率：WorkerCount=10，500-700k/s；WorkerCount=100，3.2M/s
@@ -54,18 +51,18 @@ func main() {
 	// 2.2 用户去重
 	// 2.3 存储items
 	// 2.4 代码重构
-	itemChan, err := persist.ItemSaver("dating_profile")
-	if err != nil {
-		panic(err)
-	}
-	e := engine.ConcurrentEngine{
-		Scheduler:   &scheduler.QueuedScheduler{},
-		WorkerCount: 100,
-		ItemChan:    itemChan,
-	}
-	e.Run(engine.Request{
-		Url:        "http://www.zhenai.com/zhenghun",
-		ParserFunc: parser.ParseCityList,
-	})
+	//itemChan, err := persist.ItemSaver("dating_profile")
+	//if err != nil {
+	//	panic(err)
+	//}
+	//e := engine.ConcurrentEngine{
+	//	Scheduler:   &scheduler.QueuedScheduler{},
+	//	WorkerCount: 100,
+	//	ItemChan:    itemChan,
+	//}
+	//e.Run(engine.Request{
+	//	Url:        "http://www.zhenai.com/zhenghun",
+	//	ParserFunc: parser.ParseCityList,
+	//})
 	// version 2.5 前端显示：crawler/frontend/starter.go
 }
